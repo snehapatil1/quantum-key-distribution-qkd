@@ -1,1 +1,2 @@
-# quantum-key-distribution-qkd
+# Quantum Key Distribution – BB84 Protocol
+
