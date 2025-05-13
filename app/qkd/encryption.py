@@ -15,12 +15,14 @@ def encrypt_message(message, key):
     """
         Encrypt a plaintext message using the shared Fernet key.
     """
-    fernet = Fernet(key)
+    fernet_key = convert_key_to_fernet_format(key)
+    fernet = Fernet(fernet_key)
     return fernet.encrypt(message.encode())
 
 def decrypt_message(ciphertext, key):
     """
         Decrypt the ciphertext back into plaintext using the Fernet key.
     """
-    fernet = Fernet(key)
+    fernet_key = convert_key_to_fernet_format(key)
+    fernet = Fernet(fernet_key)
     return fernet.decrypt(ciphertext).decode()

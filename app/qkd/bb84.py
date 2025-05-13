@@ -1,7 +1,8 @@
 ### BB84 Protocol Implementation
 
 import random
-from qiskit import QuantumCircuit, Aer, execute
+from qiskit_aer import Aer
+from qiskit import QuantumCircuit
 
 def generate_bits_and_bases(n):
     """
@@ -58,7 +59,7 @@ def run_bb84(n=100):
     for i in range(n):
         qc = encode_qubit(alice_bits[i], alice_bases[i])
         qc = measure_qubit(qc, bob_bases[i])
-        job = execute(qc, backend, shots=1, memory=True)
+        job = backend.run(qc, shots=1, memory=True)
         result = job.result().get_memory()[0]
         bob_results.append(int(result))
 

@@ -1,8 +1,9 @@
 ### Eavesdropping Simulation
 
 import random
-from qiskit import QuantumCircuit, Aer, execute
-from qkd.bb84 import generate_bits_and_bases, encode_qubit, measure_qubit
+from qiskit_aer import Aer
+from qiskit import QuantumCircuit
+from app.qkd.bb84 import generate_bits_and_bases, encode_qubit, measure_qubit
 
 def intercept_and_measure(bit, alice_basis, eve_basis):
     """
@@ -18,7 +19,7 @@ def intercept_and_measure(bit, alice_basis, eve_basis):
     qc.measure(0, 0)
 
     backend = Aer.get_backend('qasm_simulator')
-    job = execute(qc, backend, shots=1, memory=True)
+    job = backend.run(qc, shots=1, memory=True)
     result = int(job.result().get_memory()[0])
     return result
 
@@ -43,7 +44,7 @@ def run_bb84_with_eve(n=100):
         intercepted_bit = intercept_and_measure(alice_bits[i], alice_bases[i], eve_bases[i])
         qc = encode_qubit(intercepted_bit, eve_bases[i])
         qc = measure_qubit(qc, bob_bases[i])
-        job = execute(qc, backend, shots=1, memory=True)
+        job = backend.run(qc, shots=1, memory=True)
         result = job.result().get_memory()[0]
         bob_results.append(int(result))
 
