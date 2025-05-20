@@ -1,6 +1,5 @@
 qiskit==2.0.0
 qiskit-aer==0.17.0
-qiskit-terra==0.46.3
 cryptography==42.0.5
 streamlit==1.33.0
 matplotlib==3.8.4

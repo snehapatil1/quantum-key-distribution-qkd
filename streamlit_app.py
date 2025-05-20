@@ -54,7 +54,7 @@ if st.session_state.get('simulation_run_once', False):
     st.code(f"Shared Key (Alice's Key): {st.session_state.shared_key}")
     
     if st.session_state.simulate_eve_actual:
-        st.subheader("Error Rate Due to Eve")
+        st.subheader("Error rate due to Eve")
     else:
         st.subheader("No eavesdropping simulated")
         
@@ -63,26 +63,33 @@ if st.session_state.get('simulation_run_once', False):
     st.code(f"Matching Bits: {st.session_state.matches}")
     st.code(f"Key Match Rate: {st.session_state.match_rate:.2%}")
 
-    # Alice wants to send a secret message
-    message_input = st.text_area("Enter a message for Alice to encrypt:", key="message_text_area")
+    if st.session_state.error_rate <= 0:
+        st.success("The key exchange was successful!")
+        
+        # Alice wants to send a secret message
+        message_input = st.text_area("Enter a message for Alice to encrypt:", key="message_text_area")
 
-    if st.button("Encrypt and Decrypt Message"):
-        retrieved_shared_key = st.session_state.get('shared_key')
-        if message_input and retrieved_shared_key:
-            # Encrypt the message using Alice's shared key
-            encrypted_message = encrypt_message(message_input, retrieved_shared_key)
-            # Bob receives the message and decrypts it using the shared key
-            decrypted_message = decrypt_message(encrypted_message, retrieved_shared_key)
+        if st.button("Encrypt and Decrypt Message"):
+            retrieved_shared_key = st.session_state.get('shared_key')
+            if message_input and retrieved_shared_key:
+                # Encrypt the message using Alice's shared key
+                encrypted_message = encrypt_message(message_input, retrieved_shared_key)
+                # Bob receives the message and decrypts it using the shared key
+                decrypted_message = decrypt_message(encrypted_message, retrieved_shared_key)
 
-            st.subheader("Encrypted Message:")
-            st.write(encrypted_message)
+                st.subheader("Encrypted Message:")
+                st.write(encrypted_message)
 
-            st.subheader("Decrypted Message:")
-            st.write(decrypted_message)
-        elif not message_input:
-            st.warning("Please enter a message to encrypt and decrypt.")
-        else: # This means shared_key is None or empty
-            st.error("Shared key not available. Please run the BB84 simulation first.")
+                st.subheader("Decrypted Message:")
+                st.write(decrypted_message)
+            elif not message_input:
+                st.warning("Please enter a message to encrypt and decrypt.")
+            else:
+                # This means shared_key is None or empty
+                st.error("Shared key not available. Please run the BB84 simulation first.")
+    else:
+        st.error("Careful! Eve might be listening.")
+
 else:
     st.info("Click 'Run BB84 Simulation' to start.")
 
