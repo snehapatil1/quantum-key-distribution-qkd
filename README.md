@@ -88,7 +88,7 @@ pip install -r requirements.txt
 
 4. Run the Streamlit application:
 ```bash
-streamlit run streamlit_app.py
+python -m streamlit run streamlit_app.py
 ```
 
 ## Dependencies
