@@ -1,4 +1,4 @@
-# Quantum Key Distribution – BB84 Protocol
+# Quantum Key Distribution Simulator
 
 ## Problem Statement
 In the digital age, cybersecurity has become a critical concern, especially with the rapid advancement of quantum computing. Traditional cryptographic methods, such as RSA and ECC (Elliptic Curve Cryptography), which rely on the computational hardness of problems like factoring large numbers and discrete logarithms, are at risk of being broken by the computational power of quantum computers. This vulnerability poses a serious threat to the security of sensitive data in sectors such as finance, healthcare, and government.
