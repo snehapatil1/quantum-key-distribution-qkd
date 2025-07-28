@@ -133,6 +133,8 @@ jupyter notebook
 
 Note: Make sure all dependencies are installed before running the notebooks. The required packages are listed in the Dependencies section above.
 
+![Demo](assets/QKD Simulator.gif)
+
 ## Final Notes
 
 This project is a work-in-progress and a fun way for me to learn and explore. Feel free to poke around.
