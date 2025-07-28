@@ -133,7 +133,7 @@ jupyter notebook
 
 Note: Make sure all dependencies are installed before running the notebooks. The required packages are listed in the Dependencies section above.
 
-![Demo](assets/QKD Simulator.gif)
+![Demo](assets/QKDSimulator.gif)
 
 ## Final Notes
 
